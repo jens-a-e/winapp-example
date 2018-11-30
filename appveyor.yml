@@ -20,13 +20,13 @@ cache:
 #   - path: build/*.zip
 #     name: app
 
-# before_build:
-#   - ruby -v
-#   - gem -v
-#   - bundle -v
+before_build:
+  - ruby -v
+  - gem -v
+  - bundle -v
 
-# build_script:
-#   - bundle exec rake --trace -f Bakefile build
+build_script:
+  - bundle exec rails assets:precompile
 
 before_test:
   - ruby -v
