@@ -1,5 +1,7 @@
 version: 1.0.0-{branch}-{build}
 
+image: Visual Studio 2017
+
 environment:
   matrix:
     - RUBY_VERSION: 24-x64
@@ -7,8 +9,8 @@ environment:
 
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
+  - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
   - cinst squashfs Firefox
-  - '"C:\Program Files (x86)\Microsoft Visual Studio\Shared\14.0\VC\vcvarsall.bat" x64'
   - appveyor DownloadFile http://enclose.io/rubyc/rubyc-x64.zip
   - 7z e rubyc-x64.zip
   - bundle install
