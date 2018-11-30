@@ -8,7 +8,7 @@ environment:
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
   - cinst squashfs Firefox
-  - '"C:\Program Files (x86)\Microsoft Visual Studio\Shared\14.0\VC\vcvarsall.bat amd64'
+  - '"C:\Program Files (x86)\Microsoft Visual Studio\Shared\14.0\VC\vcvarsall" x64'
   - appveyor DownloadFile http://enclose.io/rubyc/rubyc-x64.zip
   - 7z e rubyc-x64.zip
   - bundle install
