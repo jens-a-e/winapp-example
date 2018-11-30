@@ -12,27 +12,27 @@ install:
   # - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
   - cinst winflexbison squashfs
   - ps: |
-    $ErrorActionPreference="Stop"
-    dir C:\projects
-    Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName C:\projects\sqfs43-win32.zip
-    Start-FileDownload http://enclose.io/rubyc/rubyc-x64.zip -FileName C:\projects\rubyc-x64.zip
-    Add-Type -AssemblyName System.IO.Compression.FileSystem
-    [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\sqfs43-win32.zip", "C:\projects\usr\bin")
-    [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\rubyc-x64.zip", "C:\projects\usr\bin")
+      $ErrorActionPreference="Stop"
+      dir C:\projects
+      Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName C:\projects\sqfs43-win32.zip
+      Start-FileDownload http://enclose.io/rubyc/rubyc-x64.zip -FileName C:\projects\rubyc-x64.zip
+      Add-Type -AssemblyName System.IO.Compression.FileSystem
+      [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\sqfs43-win32.zip", "C:\projects\usr\bin")
+      [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\rubyc-x64.zip", "C:\projects\usr\bin")
   - cmd: |
-    dir C:\
-    set PATH=C:\projects\usr\bin;%PATH%
-    call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64_x86
-    where mksquashfs
-    mksquashfs -version
-    where ruby
-    ruby --version
-    where gem
-    gem --version
-    where bundle
-    bundle --version
-    where rubyc-x64
-    rubyc-x64 --version
+      dir C:\
+      set PATH=C:\projects\usr\bin;%PATH%
+      call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64_x86
+      where mksquashfs
+      mksquashfs -version
+      where ruby
+      ruby --version
+      where gem
+      gem --version
+      where bundle
+      bundle --version
+      where rubyc-x64
+      rubyc-x64 --version
   - bundle install
 
 cache:
