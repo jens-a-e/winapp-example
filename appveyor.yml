@@ -51,7 +51,7 @@ artifacts:
     name: app
 
 build_script:
-  - rubyc-v0.4.0-x64.exe -o winapp-example.exe bin/rails
+  - rubyc -o winapp-example.exe bin/rails
 
 before_test:
   - cinst Firefox
