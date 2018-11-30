@@ -13,8 +13,8 @@ install:
 cache:
   - C:\ProgramData\chocolatey\bin -> appveyor.yml
   - C:\ProgramData\chocolatey\lib -> appveyor.yml
-  - %BUNDLE_PATH%
-  - %GEM_HOME%
+  - "%BUNDLE_PATH%"
+  - "%GEM_HOME%"
 
 # artifacts:
 #   - path: build/*.zip
