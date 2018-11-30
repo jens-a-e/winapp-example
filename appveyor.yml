@@ -19,12 +19,12 @@ install:
       Add-Type -AssemblyName System.IO.Compression.FileSystem
       [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\rubyc-x64.zip", "C:\projects\usr\bin")
       Rename-Item -path C:\projects\usr\bin\rubyc-v0.4.0-x64.exe -newname C:\projects\usr\bin\rubyc.exe
-  - ps: |
-      $ErrorActionPreference="Stop"
-      dir C:\projects
       Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName C:\projects\sqfs43-win32.zip
-      Add-Type -AssemblyName System.IO.Compression.FileSystem
       [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\sqfs43-win32.zip", "C:\projects\usr\bin")
+      Start-FileDownload https://github.com/lexxmark/winflexbison/releases/download/v2.5.16/winflexbison-2.5.16.zip -FileName C:\projects\bison.zip
+      [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\bison.zip", "C:\projects\usr\bin")
+      Rename-Item -path C:\projects\usr\bin\win_bison.exe -newname C:\projects\usr\bin\bison.exe
+      Rename-Item -path C:\projects\usr\bin\win_flex.exe -newname C:\projects\usr\bin\flex.exe
   - cmd: |
       dir "C:\projects\usr\bin"
       set PATH=C:\projects\usr\bin;%PATH%
