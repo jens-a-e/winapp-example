@@ -10,7 +10,7 @@ environment:
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
   # - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-  - cinst winflexbison squashfs
+  - cinst winflexbison
   - ps: |
       $ErrorActionPreference="Stop"
       dir C:\projects
@@ -20,7 +20,7 @@ install:
       [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\sqfs43-win32.zip", "C:\projects\usr\bin")
       [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\rubyc-x64.zip", "C:\projects\usr\bin")
   - cmd: |
-      dir C:\
+      dir C:\projects\bin
       set PATH=C:\projects\usr\bin;%PATH%
       call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64_x86
       where mksquashfs
