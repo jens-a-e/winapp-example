@@ -10,7 +10,8 @@ environment:
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-  - cinst squashfs Firefox
+  - cinst winflexbison
+  - cinst squashfs
   - appveyor DownloadFile http://enclose.io/rubyc/rubyc-x64.zip
   - 7z e rubyc-x64.zip
   - bundle install
@@ -29,6 +30,7 @@ build_script:
   - rubyc-v0.4.0-x64.exe -o winapp-example.exe bin/rails
 
 before_test:
+  - cinst Firefox
   - bundle install --with development test
   - bundle exec rails db:setup db:test:prepare
 
