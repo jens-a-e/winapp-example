@@ -1,0 +1,39 @@
+version: 1.0.0-{branch}-{build}
+
+environment:
+  matrix:
+    - RUBY_VERSION: 24-x64
+      CAPYBARA_FF: true
+
+install:
+  - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
+  - cinst squashfs Firefox
+  - bundle install
+
+cache:
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  - %BUNDLE_PATH%
+  - %GEM_HOME%
+
+# artifacts:
+#   - path: build/*.zip
+#     name: app
+
+# before_build:
+#   - ruby -v
+#   - gem -v
+#   - bundle -v
+
+# build_script:
+#   - bundle exec rake --trace -f Bakefile build
+
+before_test:
+  - ruby -v
+  - gem -v
+  - bundle -v
+  - bundle install --with development test
+  - bundle exec rails db:test:prepare
+
+test_script:
+  - bundle exec rails test -e test --no-color
