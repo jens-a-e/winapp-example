@@ -17,6 +17,7 @@ install:
       Start-FileDownload http://enclose.io/rubyc/rubyc-x64.zip -FileName C:\projects\rubyc-x64.zip
       Add-Type -AssemblyName System.IO.Compression.FileSystem
       [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\rubyc-x64.zip", "C:\projects\usr\bin")
+      Rename-Item -path C:\projects\usr\bin\rubyc-v0.4.0-x64.exe -newname C:\projects\usr\bin\rubyc.exe
   - ps: |
       $ErrorActionPreference="Stop"
       dir C:\projects
@@ -35,8 +36,8 @@ install:
       gem --version
       where bundle
       bundle --version
-      where rubyc-x64
-      rubyc-x64 --version
+      where rubyc
+      rubyc --version
   - bundle install
 
 cache:
