@@ -11,6 +11,7 @@ install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
   # - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
   - cinst winflexbison
+  - ps: Copy-Item -path C:\ProgramData\chocolatey\lib\winflexbison\tools\win_bison.exe -destination C:\ProgramData\chocolatey\lib\winflexbison\tools\bison.exe
   - ps: |
       $ErrorActionPreference="Stop"
       dir C:\projects
@@ -38,13 +39,15 @@ install:
       bundle --version
       where rubyc
       rubyc --version
+      where bison
+      bison --version
   - bundle install
 
 cache:
   - C:\ProgramData\chocolatey\bin -> appveyor.yml
   - C:\ProgramData\chocolatey\lib -> appveyor.yml
-  - "%BUNDLE_PATH%"
-  - "%GEM_HOME%"
+  - '%BUNDLE_PATH%'
+  - '%GEM_HOME%'
 
 artifacts:
   - path: winapp-example.exe
