@@ -8,10 +8,6 @@ environment:
       CAPYBARA_FF: true
 
 install:
-  - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
-  # - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-  - cinst winflexbison
-  - ps: Copy-Item -path C:\ProgramData\chocolatey\lib\winflexbison\tools\win_bison.exe -destination C:\ProgramData\chocolatey\lib\winflexbison\tools\bison.exe
   - ps: |
       $ErrorActionPreference="Stop"
       dir C:\projects
@@ -27,7 +23,7 @@ install:
       Rename-Item -path C:\projects\usr\bin\win_flex.exe -newname C:\projects\usr\bin\flex.exe
   - cmd: |
       dir "C:\projects\usr\bin"
-      set PATH=C:\projects\usr\bin;%PATH%
+      set PATH=C:\projects\usr\bin;C:\Ruby%RUBY_VERSION%\bin;%PATH%
       call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64_x86
       where mksquashfs
       mksquashfs -version
