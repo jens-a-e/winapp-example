@@ -8,6 +8,8 @@ environment:
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
   - cinst squashfs Firefox
+  - appveyor DownloadFile http://enclose.io/rubyc/rubyc-x64.zip
+  - 7z e rubyc-x64.zip
   - bundle install
 
 cache:
@@ -16,24 +18,16 @@ cache:
   - "%BUNDLE_PATH%"
   - "%GEM_HOME%"
 
-# artifacts:
-#   - path: build/*.zip
-#     name: app
-
-before_build:
-  - ruby -v
-  - gem -v
-  - bundle -v
+artifacts:
+  - path: winapp-example.exe
+    name: app
 
 build_script:
-  - bundle exec rails assets:precompile
+  - rubyc-v0.4.0-x64.exe -o winapp-example.exe bin/rails
 
 before_test:
-  - ruby -v
-  - gem -v
-  - bundle -v
   - bundle install --with development test
-  - bundle exec rails db:test:prepare
+  - bundle exec rails db:setup db:test:prepare
 
 test_script:
   - bundle exec rails test -e test --no-color
